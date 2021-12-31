@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
 import SelectCharacter from './Components/SelectCharacter';
+import Arena from './Components/Arena';
 import myEpicGame from './utils/MyEpicGame.json';
 import twitterLogo from './assets/twitter-logo.svg';
 import { ethers } from 'ethers';
@@ -94,7 +95,11 @@ const App = () => {
       * Scenario #2
       */
     } else if (currentAccount && !characterNFT) {
+      // User can select an NFT
       return <SelectCharacter setCharacterNFT={setCharacterNFT} />;
+    } else if (currentAccount && characterNFT) {
+      // User owns an NFT - put it into battle
+      return <Arena characterNFT={characterNFT} setCharacterNFT={setCharacterNFT} />;
     }
   };
 
